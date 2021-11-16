@@ -13,8 +13,15 @@ class NewPost extends Component
     public $title,$slug,$content, $category;
 
     protected $rules = [
-        'category' => 'required',
-//        'email' => 'required|email',
+        'title' => ['required','string'],
+        'slug' => ['required','string'],
+        'content' => ['required'],
+        'category' => ['required','exists:categories,id'],
+
+    ];
+
+    protected $messages = [
+        'category.exists' => 'The Email Address cannot be empty.',
     ];
 
     public function savePost(Request $request){
@@ -30,13 +37,18 @@ class NewPost extends Component
         ]);
         $post->save();
         $this->emit('savePost');
+        session()->flash('message', 'Post successfully updated.');
         $this->reset();
+    }
+
+    public function editModal($id){
+        $this->modelId = $id;
+        $this->modalFormVisible = true;
     }
 
     public function render()
     {
         $categories = Category::all();
-
 
         return view('livewire.new-post',['categories'=> $categories]);
     }

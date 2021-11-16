@@ -11,6 +11,13 @@ module.exports = {
 
     theme: {
         extend: {
+            // colors: {
+            //     'custom-yellow': "var(--primary-color)",
+            // },
+            colors: {
+                "primary-color": "var(--primary-color)",
+                "secondary-color": "var(--secondary-color)"
+            },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },

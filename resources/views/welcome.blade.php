@@ -13,13 +13,27 @@
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
         <style>
-            body {
-                font-family: 'Nunito', sans-serif;
+            :root{
+{{--                @foreach($settings ?? '' as $setting)--}}
+{{--                       --primary-color: {{ $setting->primary_color }};--}}
+{{--                       --secondary-color: {{ $setting->secondary_color }};--}}
+{{--                   @endforeach--}}
             }
+            .primary-color-bg{
+                background-color: var(--primary-color);
+             }
+            .primary-color-text{
+                color: var(--primary-color);
+             }
         </style>
     </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100  sm:items-center py-4 sm:pt-0">
+
+    <nav class="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 shadow sm:items-baseline w-full primary-color-bg">
+        <div class="mb-2 sm:mb-0 testColor">
+            <a href="/home" class="text-2xl no-underline text-grey-darkest hover:text-blue-dark">Home</a>
+        </div>
+        <div>
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
@@ -33,14 +47,11 @@
                     @endauth
                 </div>
             @endif
-
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex flex-wrap -mx-3 mb-2">
-                    <a href="" wire:click="submit" class="p-2 pl-5 pr-5 transition-colors duration-700 transform bg-indigo-500 hover:bg-blue-400 text-gray-100 text-lg rounded-lg focus:border-4 border-indigo-300">Submit</a>
-                </div>
-
-
-            </div>
         </div>
+        <div class="bg-white">
+            <p class="primary-color-text">test text</p>
+        </div>
+    </nav>
+
     </body>
 </html>

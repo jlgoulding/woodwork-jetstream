@@ -6,14 +6,17 @@
                         Title
                     </label>
                     <input wire:model="title" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"  type="text" >
-{{--                    <p class="text-red-500 text-xs italic">Please fill out this field.</p>--}}
+                    @error('title') <span class="error text-red-700">{{ $message }}</span> @enderror
                 </div>
                 <div class="w-full md:w-1/2 px-3">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                         Slug
                     </label>
                     <input wire:model="slug" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="">
+                    @error('slug') <span class="error text-red-700">{{ $message }}</span> @enderror
+
                 </div>
+
             </div>
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
@@ -21,20 +24,20 @@
                         Post content
                     </label>
                     <textarea wire:model="content" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-
                     </textarea>
-                    <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
+{{--                    <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>--}}
+                    @error('content') <span class="error text-red-700">{{ $message }}</span> @enderror
+
                 </div>
             </div>
             <div class="flex flex-wrap -mx-3 mb-2">
 
                 <div class="w-full  px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-                        Category (populate from lookup table)
+                        Category
                     </label>
                     <div class="relative">
-{{--                        <input wire:model="category" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="">--}}
-                        <select wire:model="category" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        <select wire:model="category" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                                 <option value="">Please choose a category</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -50,7 +53,13 @@
             </div>
             <div class="flex flex-wrap -mx-3 mb-2">
                 <button  class="p-1 transition-colors duration-700 transform bg-indigo-500 hover:bg-blue-400 text-gray-100 text-lg rounded-lg focus:border-4 border-indigo-300">Save Post</button>
-{{--                <a href="" wire:click="savePost" class="p-2 pl-5 pr-5 transition-colors duration-700 transform bg-indigo-500 hover:bg-blue-400 text-gray-100 text-lg rounded-lg focus:border-4 border-indigo-300">Submit</a>--}}
             </div>
         </form>
+    <div class="flex flex-wrap -mx-3 mb-2">
+        @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+    </div>
 </div>

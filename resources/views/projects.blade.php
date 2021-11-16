@@ -1,0 +1,76 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Settings') }}
+        </h2>
+    </x-slot>
+
+    <div class="p-6 sm:px-10 bg-white border-b border-gray-200">
+        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-200 " >
+                        <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="hidden sm:block px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Project Name
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Project Desc
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Developer
+                            </th>
+                            <th scope="col" class="hidden sm:block px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Status
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Edit
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+
+                        @foreach ($projects as $project )
+                            <tr>
+                                <td class="hidden sm:block px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">
+                                                {{ $project->name}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">{{ $project->description }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+{{--                                    <div class="text-sm text-gray-900">{{ $post->user->name }}</div>--}}
+                                    <div class="text-sm text-gray-900">{{ $project->developer_id }}</div>
+                                </td>
+
+                                <td class=" whitespace-nowrap text-sm text-gray-500">
+{{--                                    <x-jet-secondary-button wire:click="editModal({{ $post->id }})">--}}
+{{--                                        {{ __('Update')  }}--}}
+{{--                                    </x-jet-secondary-button>--}}
+                                    <x-jet-secondary-button >
+                                        {{ __('Update')  }}
+                                    </x-jet-secondary-button>
+                                    <x-jet-secondary-button >
+                                        {{ __('Delete')  }}
+                                    </x-jet-secondary-button>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+
+                    {{--                {{ $posts->links() }}--}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</x-app-layout>

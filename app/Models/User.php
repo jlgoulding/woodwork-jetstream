@@ -65,4 +65,8 @@ class User extends Authenticatable
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+
+    public function site_setting(){
+        return $this->hasOne(SiteSetting::class);
+    }
 }

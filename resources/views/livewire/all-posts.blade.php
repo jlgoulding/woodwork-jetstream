@@ -42,10 +42,12 @@
                                 <div class="text-sm text-gray-900">{{ $post->user->name }}</div>
                             </td>
                             <td class="hidden sm:block px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <div class="text-sm text-gray-900">{{ $post->category }}</div>
+                                <div class="text-sm text-gray-900">{{ $post->category}}</div>
                             </td>
                             <td class=" whitespace-nowrap text-sm text-gray-500">
-                                <div class="text-sm text-gray-900">Edit button</div>
+                                <x-jet-secondary-button wire:click="editModal({{ $post->id }})">
+                                    {{ __('Update')  }}
+                                </x-jet-secondary-button>
                             </td>
                         </tr>
                     @endforeach
